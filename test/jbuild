@@ -1,0 +1,9 @@
+(executables
+ ((names (runner))
+  (libraries (erlsub ounit))
+  (preprocess no_preprocessing)))
+
+(alias
+ ((name runtest)
+  (deps (./runner.exe))
+  (action "${<}")))
