@@ -1,0 +1,16 @@
+# type Bool = [ `True | `False ]
+
+# even : (Int) -> Bool
+def even(n) = match n == 0 of
+  | `True -> `True
+  | `False -> odd(n - 1)
+end
+
+# odd : (Int) -> Bool
+def odd(n) = match n == 0 of
+  | `True -> `False
+  | `False -> even(n - 1)
+end
+
+# (-) : (Number /\ a, a) -> a
+# but Number = Float \/ Int, in negative position...?

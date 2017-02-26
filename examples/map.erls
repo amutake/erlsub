@@ -1,0 +1,7 @@
+# type List(a) = rec l = [ `Nil | `Cons(a, l) ]
+
+# map : ((a) -> b, List(a)) -> List(b)
+def map(f, xs) = match xs with
+  | `Nil -> `Nil
+  | `Cons(x, xs) -> `Cons(f(x), map(f, xs'))
+end

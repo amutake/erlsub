@@ -1,0 +1,11 @@
+(executables
+ ((names (main))
+  (libraries (erlsub))
+  (link_flags (-linkall))
+  (preprocess no_preprocessing)))
+
+(provides (erlsubc (file main.exe)))
+
+(install
+ ((section bin)
+  (files ((main.exe as erlsubc)))))

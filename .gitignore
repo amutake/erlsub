@@ -1,2 +1,5 @@
 /_build
 /*.install
+/src/parser.ml
+/src/parser.mli
+/src/lexer.ml

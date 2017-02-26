@@ -1,0 +1,7 @@
+B ../_build/default/bin
+B ../_build/default/src
+PKG base
+PKG base.caml
+PKG base.shadow_stdlib
+PKG ppx_compare.runtime-lib
+S .
