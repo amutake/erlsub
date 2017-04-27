@@ -1,15 +1,15 @@
 (library
  ((name erlsub)
   (public_name erlsub)
-  (libraries (base))
-  (preprocess (pps (ppx_compare)))))
+  (libraries (batteries))
+  (preprocess no_preprocessing)))
 
 (rule
  ((targets (lexer.ml))
   (deps    (lexer.mll))
-  (action  "ocamllex ${<}")))
+  (action  (bash "ocamllex ${<}"))))
 
 (rule
  ((targets (parser.ml parser.mli))
   (deps    (parser.mly))
-  (action  "menhir ${<}")))
+  (action  (bash "menhir ${<}"))))

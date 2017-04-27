@@ -1,6 +1,5 @@
 open Lexing
 open Lexer
-open Base
 
 let print_position outx lexbuf =
   let pos = lexbuf.lex_curr_p in
@@ -18,17 +17,26 @@ let parse_with_error lexbuf =
 
 let rec parse_and_print lexbuf =
   let prog = parse_with_error lexbuf in
-  String.concat ~sep:"\n" (List.map prog ~f:(fun (a, b, c) -> Expr.to_string c))
+  BatString.concat "\n" (BatList.map (fun (a, b, c) -> Expr.to_string c) prog)
 
 let loop filename () =
-  let inx = In_channel.create filename in
+  let inx = open_in filename in
   let lexbuf = Lexing.from_channel inx in
   lexbuf.lex_curr_p <- { lexbuf.lex_curr_p with pos_fname = filename };
   parse_and_print lexbuf;
-  In_channel.close inx
+  close_in inx
 
 let main () =
-  if Array.length Sys.argv = 1 then
+  let twice = Alpha.Abs (["f"], Alpha.Abs (["x"], Alpha.App (Alpha.AbsVar "f", [Alpha.App (Alpha.AbsVar "f", [Alpha.AbsVar "x"])]))) in
+  print_endline (Biunification.Scheme.to_string (Biunification.p (BatMap.empty) twice));
+
+  let xx = Alpha.Abs (["x"], Alpha.App (Alpha.AbsVar "x", [Alpha.AbsVar "x"])) in
+  print_endline (Biunification.Scheme.to_string (Biunification.p (BatMap.empty) xx));
+
+  let xxx = Alpha.Abs (["x"], Alpha.App (Alpha.App (Alpha.AbsVar "x", [Alpha.AbsVar "x"]), [Alpha.AbsVar "x"])) in
+  print_endline (Biunification.Scheme.to_string (Biunification.p (BatMap.empty) xxx));
+
+  if Array.length Sys.argv = 2 then
     let filename = Sys.argv.(1) in
     loop filename ()
   else

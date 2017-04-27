@@ -1,7 +1,12 @@
 B ../_build/default/src
-FLG -open Erlsub
-PKG base
-PKG base.caml
-PKG base.shadow_stdlib
-PKG ppx_compare.runtime-lib
+FLG -open Erlsub -w -40
+PKG batteries
+PKG bigarray
+PKG bytes
+PKG num
+PKG num.core
+PKG str
+PKG threads
+PKG threads.posix
+PKG unix
 S .

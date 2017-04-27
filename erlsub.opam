@@ -9,7 +9,7 @@ build: [
   ["jbuilder" "build-package" "mini_dialyzer" "-j" jobs]
 ]
 depends: [
-  "base"
+  "batteries"
   "ppx_compare" {build}
   "jbuilder" {build}
 ]

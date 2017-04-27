@@ -1,7 +1,6 @@
 {
 open Lexing
 open Parser
-open Base
 
 exception SyntaxError of string
 }
@@ -49,9 +48,9 @@ rule read =
   | "*"      { OP_MUL }
   | "/"      { OP_DIV }
 
-  | variant  { VARIANT (String.drop_prefix (Lexing.lexeme lexbuf) 1) }
-  | atom     { ATOM (String.drop_prefix (String.drop_suffix (Lexing.lexeme lexbuf) 1) 1) }
+  | variant  { VARIANT (BatString.lchop (Lexing.lexeme lexbuf)) }
+  | atom     { ATOM (BatString.lchop (BatString.rchop (Lexing.lexeme lexbuf))) }
   | id       { IDENT (Lexing.lexeme lexbuf) }
-  | float    { FLOAT (Float.of_string (Lexing.lexeme lexbuf)) }
-  | int      { INT (Int.of_string (Lexing.lexeme lexbuf)) }
+  | float    { FLOAT (BatFloat.of_string (Lexing.lexeme lexbuf)) }
+  | int      { INT (BatInt.of_string (Lexing.lexeme lexbuf)) }
   | eof      { EOF }

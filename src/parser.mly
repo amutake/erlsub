@@ -1,11 +1,11 @@
 (* identifiers *)
-%token <Base.String.t> IDENT
+%token <string> IDENT
 
 (* values *)
-%token <Base.Int.t> INT
-%token <Base.Float.t> FLOAT
-%token <Base.String.t> ATOM
-%token <Base.String.t> VARIANT
+%token <int> INT
+%token <float> FLOAT
+%token <string> ATOM
+%token <string> VARIANT
 
 (* structures *)
 %token DEF
@@ -49,7 +49,7 @@
 %left OP_DIV
 
 (* entry point *)
-%start <(Base.String.t * Base.String.t Base.List.t * Expr.t) Base.List.t> prog
+%start <(string * string list * Expr.t) list> prog
 
 %%
 

@@ -1,8 +1,6 @@
-NAME := erlsub
-
 # Default rule
 default:
-	jbuilder build-package $(NAME)
+	jbuilder build @install
 
 test:
 	jbuilder runtest

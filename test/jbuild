@@ -6,4 +6,4 @@
 (alias
  ((name runtest)
   (deps (./runner.exe))
-  (action "${<}")))
+  (action (bash "${<}"))))
